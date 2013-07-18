@@ -31,3 +31,29 @@ Minimal installation guide to setup a Raspberry Pi as status monitor (buildserve
     Terminal=false  
     Hidden=false  
     ```
+
+- Setup remote framebuffer [rfb](http://en.wikipedia.org/wiki/RFB_protocol)  
+  `sudo vim /etc/avahi/services/rfb.service`
+    ```xml
+    <?xml version="1.0" standalone='no'?>
+    <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+    <service-group>
+      <name replace-wildcards="yes">%h</name>
+      <service>
+      <type>_rfb._tcp</type>
+        <port>5901</port>
+      </service>
+    </service-group>
+    ```
+
+- Disable screen-saver  
+  `vim /home/pi/.xsessionrc`  
+  ```
+  # turn off default screensaver
+  xset s off
+  # turn off default standby, hibernate, ... after n minutes
+  xset -dpms
+  # don't blank the video device
+  xset s noblank
+  logger "Screen disabled."
+  ```
