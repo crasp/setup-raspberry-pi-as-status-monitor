@@ -20,7 +20,7 @@ Minimal installation guide to setup a Raspberry Pi as status monitor (buildserve
     
 - Autostart VNC:  
   `mkdir -p /home/pi/.config/autostart`  
-  `vim /home/pi/.config/autostart/x11vnc.desktop`
+  `nano /home/pi/.config/autostart/x11vnc.desktop`
   ```
   [Desktop Entry]  
   Encoding=UTF-8  
@@ -33,7 +33,7 @@ Minimal installation guide to setup a Raspberry Pi as status monitor (buildserve
   ```
 
 - Setup remote framebuffer [rfb](http://en.wikipedia.org/wiki/RFB_protocol)  
-  `sudo vim /etc/avahi/services/rfb.service`  
+  `sudo nano /etc/avahi/services/rfb.service`  
   ```xml
   <?xml version="1.0" standalone='no'?>
   <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
@@ -47,7 +47,7 @@ Minimal installation guide to setup a Raspberry Pi as status monitor (buildserve
   ```
 
 - Disable screen-saver  
-  `vim /home/pi/.xsessionrc`  
+  `nano /home/pi/.xsessionrc`  
   ```
   # turn off default screensaver
   xset s off
