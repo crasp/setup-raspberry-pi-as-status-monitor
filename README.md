@@ -3,13 +3,28 @@ setup-raspberry-pi-as-status-monitor
 
 Minimal installation guide to setup a Raspberry Pi as status monitor (buildserver, service-status etc.)
 
-## Preparation
+## Preparation and Setup
+
+### Install [Raspbian](http://www.raspberrypi.org/downloads)
 - [Format](https://www.sdcard.org/downloads/formatter_4/) an SD-Card
-- install [Raspbian](http://www.raspberrypi.org/downloads) on the SD-Card 
-- on boot, the config-tool will open
-  - extend filesystem to full capacity
-  - enable boot into GUI
-  - advanced > enable SSH
+- Install [Raspbian](http://www.raspberrypi.org/downloads) on the SD-Card
+  - Before writing the image file to the SD card, the volume needs to be unmounted.
+
+    `diskutil umount /dev/diskXs1` (Replace X with the correct disk node number)
+
+  -  We can write the image from the downloaded ZIP file by unzipping it on the fly and writing it directly onto the SD card. The `bs` (blocksize) parameter ensures dd reads and writes in those size blocks (here: 8 MiB).
+
+    `unzip -p debian-wheezy.zip|dd bs=8388608 of=/dev/diskX` (Replace X with the correct disk node number)
+
+  - To write the disk image normally, unzip it and  
+    `dd bs=8388608 if=debian-wheezy.img of=/dev/diskX` (Replace X with the correct disk node number)
+
+
+### Boot
+When you boot for the first time the config-tool will open
+  - Extend filesystem to full capacity
+  - Enable boot into GUI
+  - Advanced > enable SSH
 
 ## Install packages
     sudo apt-get install chromium htop netatalk avahi-daemon x11vnc
